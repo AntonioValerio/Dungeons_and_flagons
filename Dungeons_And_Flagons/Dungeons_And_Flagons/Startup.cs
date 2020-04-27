@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Dungeons_And_Flagons.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Dungeons_And_Flagons
 {
@@ -24,6 +27,9 @@ namespace Dungeons_And_Flagons
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<DafDB>(options =>
+           options.UseSqlServer(Configuration.GetConnectionString("ConnectionDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
