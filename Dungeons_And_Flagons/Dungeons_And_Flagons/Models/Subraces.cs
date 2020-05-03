@@ -26,7 +26,7 @@ namespace Dungeons_And_Flagons.Models
         //FK to Source
         [ForeignKey(" Book")]
         public int Source { get; set; }
-        public Sources Book { get; set; }
+        public virtual Sources Book { get; set; }
 
         //Fk to Spells
         public ICollection<Spells> Tome { get; set; }

@@ -15,16 +15,12 @@ namespace Dungeons_And_Flagons.Models
 
         public String Features { get; set; }
 
-        public int spellslots { get; set; }
+        public int Spellslots { get; set; }
 
         [ForeignKey(nameof(Book))]
         public int Source { get; set; }
-        public Sources Book { get; set; }
-
-        [ForeignKey(nameof(MainClasse))]
-        public int Classe { get; set; }
-        public Classes MainClasse { get; set; }
-
+        public virtual Sources Book { get; set; }
+              
 
     }
 }

@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace Dungeons_And_Flagons.Models
 {
-   
-    public class SubclassSpell
+    public class ClasseSpells
     {
-       
+
         [Key]
-        [ForeignKey(nameof(Subclass))]
-        public int SubclassID { get; set; }
-        public virtual Subclasses Subclass { get; set; }
+        [ForeignKey(nameof(Classe))]
+        public int ClasseID { get; set; }
+        public virtual Classes Classe { get; set; }
 
 
         [Key]
         [ForeignKey(nameof(Tome))]
         public int SpellID { get; set; }
         public virtual Spells Tome { get; set; }
-
 
     }
 }

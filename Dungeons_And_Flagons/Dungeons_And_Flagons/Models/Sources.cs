@@ -8,6 +8,7 @@ namespace Dungeons_And_Flagons.Models
 {
     public class Sources
     {
+        
         [Key]
         public int ID { get; set; }
 
@@ -15,6 +16,12 @@ namespace Dungeons_And_Flagons.Models
 
         public String Summary { get; set; }
         public String Path { get; set; }
+
+        public ICollection<Classes> Classes { get; set; }
+        public ICollection<Subclasses> Subclasses { get; set; }
+        public ICollection<Spells> Spells { get; set; }
+        public ICollection<Subraces> Subraces { get; set; }
+
 
     }
 }

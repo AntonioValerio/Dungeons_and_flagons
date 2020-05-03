@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200503135818_FirstIteration.cs" />
+    <Compile Remove="Migrations\20200503135818_FirstIteration.Designer.cs" />
+    <Compile Remove="Migrations\20200503140151_ScondIteation.cs" />
+    <Compile Remove="Migrations\20200503140151_ScondIteation.Designer.cs" />
+    <Compile Remove="Migrations\20200503140327_DaFDb.cs" />
+    <Compile Remove="Migrations\20200503140327_DaFDb.Designer.cs" />
+    <Compile Remove="Migrations\20200503150248_First.cs" />
+    <Compile Remove="Migrations\20200503150248_First.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
