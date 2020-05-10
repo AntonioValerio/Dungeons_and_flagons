@@ -30,11 +30,5 @@ namespace Dungeons_And_Flagons.Models
         public int Source { get; set; }
         public Sources Book { get; set; }
 
-
-        //Fk to Subraces
-        [ForeignKey(nameof(Caster))]
-        public int Subrace { get; set; }
-        public Subraces Caster { get; set; }
-
     }
 }

@@ -13,6 +13,10 @@
     <Compile Remove="Migrations\20200503140327_DaFDb.Designer.cs" />
     <Compile Remove="Migrations\20200503150248_First.cs" />
     <Compile Remove="Migrations\20200503150248_First.Designer.cs" />
+    <Compile Remove="Migrations\20200510170549_SecondIteration.cs" />
+    <Compile Remove="Migrations\20200510170549_SecondIteration.Designer.cs" />
+    <Compile Remove="Migrations\20200510171519_Third.cs" />
+    <Compile Remove="Migrations\20200510171519_Third.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
