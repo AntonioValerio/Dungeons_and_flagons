@@ -11,11 +11,12 @@ namespace Dungeons_And_Flagons.Models
         
         [Key]
         public int ID { get; set; }
-
         public String Name { get; set; }
-
-        public String Summary { get; set; }
+        public String Summary { get; set;}
+        public int Permission { get; set; }
         public String Path { get; set; }
+        public String Category { get; set; }
+
 
         public ICollection<Classes> Classes { get; set; }
         public ICollection<Subclasses> Subclasses { get; set; }

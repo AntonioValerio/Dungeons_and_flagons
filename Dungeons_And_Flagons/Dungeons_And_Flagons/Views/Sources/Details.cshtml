@@ -23,10 +23,22 @@
             @Html.DisplayFor(model => model.Summary)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Permission)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Permission)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Path)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Path)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
         </dd>
     </dl>
 </div>

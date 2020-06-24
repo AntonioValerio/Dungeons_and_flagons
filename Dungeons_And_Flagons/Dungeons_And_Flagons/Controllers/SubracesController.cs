@@ -54,7 +54,7 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,MainRace,Name,Description,Features,permissions,Source")] Subraces subraces)
+        public async Task<IActionResult> Create([Bind("ID,MainRace,Name,Description,Features,Source")] Subraces subraces)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,MainRace,Name,Description,Features,permissions,Source")] Subraces subraces)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,MainRace,Name,Description,Features,Source")] Subraces subraces)
         {
             if (id != subraces.ID)
             {

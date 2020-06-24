@@ -19,7 +19,13 @@
                 @Html.DisplayNameFor(model => model.Summary)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Permission)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th></th>
         </tr>
@@ -34,7 +40,13 @@
                 @Html.DisplayFor(modelItem => item.Summary)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Permission)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
