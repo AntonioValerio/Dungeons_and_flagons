@@ -1,15 +1,36 @@
 ﻿
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Dungeons_And_Flagons.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dungeons_And_Flagons.Data
 {
-    public class DafDB : DbContext
+    /// <summary>
+    /// User auth
+    /// </summary>
+    public class ApplicationUser : IdentityUser
+    {
+
+        /// <summary>
+        /// nome da pessoa q se regista, e posteriormente, autentica
+        /// </summary>
+        public string Nome { get; set; }
+
+        /// <summary>
+        /// avatar da pessoa q se regista, e posteriormente, autentica
+        /// </summary>
+        public string Fotografia { get; set; }
+
+        /// <summary>
+        /// registo da hora+data da criação do registo
+        /// </summary>
+        public DateTime Timestamp { get; set; }
+    }
+
+        public class DafDB : IdentityDbContext<ApplicationUser>
     {
         public DafDB(DbContextOptions<DafDB> options) : base(options) {}
 
