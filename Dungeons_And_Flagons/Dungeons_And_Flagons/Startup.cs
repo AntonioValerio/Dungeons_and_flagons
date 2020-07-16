@@ -30,6 +30,10 @@ namespace Dungeons_And_Flagons
 
             services.AddDbContext<DafDB>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("ConnectionDB")));
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
