@@ -4,14 +4,16 @@ using Dungeons_And_Flagons.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dungeons_And_Flagons.Migrations
 {
     [DbContext(typeof(DafDB))]
-    partial class DafDBModelSnapshot : ModelSnapshot
+    [Migration("20200717003052_addedUserTable")]
+    partial class addedUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,6 @@ namespace Dungeons_And_Flagons.Migrations
             modelBuilder.Entity("Dungeons_And_Flagons.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -88,7 +89,7 @@ namespace Dungeons_And_Flagons.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users");
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Dungeons_And_Flagons.Models.ClasseSpells", b =>

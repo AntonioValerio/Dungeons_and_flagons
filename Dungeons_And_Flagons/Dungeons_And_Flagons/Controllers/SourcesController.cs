@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Dungeons_And_Flagons.Data;
 using Dungeons_And_Flagons.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dungeons_And_Flagons.Controllers
 {
+    [Authorize]
     public class SourcesController : Controller
     {
+
         private readonly DafDB _context;
 
         public SourcesController(DafDB context)
@@ -19,12 +22,14 @@ namespace Dungeons_And_Flagons.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Sources
         public async Task<IActionResult> Index()
         {
             return View(await _context.Sources.ToListAsync());
         }
 
+        [AllowAnonymous]
         // GET: Sources/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,6 +40,8 @@ namespace Dungeons_And_Flagons.Controllers
 
             var sources = await _context.Sources
                 .FirstOrDefaultAsync(m => m.ID == id);
+
+
             if (sources == null)
             {
                 return NotFound();
@@ -43,17 +50,20 @@ namespace Dungeons_And_Flagons.Controllers
             return View(sources);
         }
 
+        [Authorize(Roles ="Administrativo")]
         // GET: Sources/Create
         public IActionResult Create()
         {
             return View();
         }
 
+
         // POST: Sources/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
         public async Task<IActionResult> Create([Bind("ID,Name,Summary,Permission,Path,Category")] Sources sources)
         {
             if (ModelState.IsValid)
@@ -65,6 +75,7 @@ namespace Dungeons_And_Flagons.Controllers
             return View(sources);
         }
 
+        [Authorize(Roles ="Administrativo")]
         // GET: Sources/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -86,6 +97,7 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Administrativo")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Summary,Permission,Path,Category")] Sources sources)
         {
             if (id != sources.ID)
@@ -116,7 +128,9 @@ namespace Dungeons_And_Flagons.Controllers
             return View(sources);
         }
 
+
         // GET: Sources/Delete/5
+        [Authorize(Roles = "Administrativo")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +151,7 @@ namespace Dungeons_And_Flagons.Controllers
         // POST: Sources/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var sources = await _context.Sources.FindAsync(id);

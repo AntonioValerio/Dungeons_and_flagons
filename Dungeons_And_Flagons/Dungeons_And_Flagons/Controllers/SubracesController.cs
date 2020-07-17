@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Dungeons_And_Flagons.Data;
 using Dungeons_And_Flagons.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dungeons_And_Flagons.Controllers
 {
+    [Authorize]
     public class SubracesController : Controller
     {
         private readonly DafDB _context;
@@ -44,6 +46,7 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Subraces/Create
+        [Authorize(Roles ="Administrativo")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +57,8 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Create([Bind("ID,MainRace,Name,Description,Features,Source")] Subraces subraces)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,8 @@ namespace Dungeons_And_Flagons.Controllers
             }
             return View(subraces);
         }
+
+        [Authorize(Roles = "Administrativo")]
 
         // GET: Subraces/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -86,6 +93,7 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,MainRace,Name,Description,Features,Source")] Subraces subraces)
         {
             if (id != subraces.ID)
@@ -117,6 +125,8 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Subraces/Delete/5
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +147,8 @@ namespace Dungeons_And_Flagons.Controllers
         // POST: Subraces/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var subraces = await _context.Subraces.FindAsync(id);
