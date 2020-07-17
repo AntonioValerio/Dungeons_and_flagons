@@ -11,10 +11,11 @@
 @if (User.IsInRole("Administrativo"))
 {
     // User.Identity.IsAuthenticated --> sabe se o Utilizador está ou não autenticado
-    // User.IsInRole("Administrativo") --> identifica se o utilizador está Autenticado e se pertence, ou não, a este Role
+   //  User.IsInRole("Administrativo") --> identifica se o utilizador está Autenticado e se pertence, ou não, a este Role
 <p>
     <a asp-action="Create">Add a book scribe</a>
-</p>}
+</p>
+}
 
 
 <table class="table">
@@ -38,26 +39,33 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Summary)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+             @if (User.Identity.IsAuthenticated)
+              {
+                 <td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Path)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
+                    <a download="@Html.DisplayFor(modelItem => item.Path)"> Get it!</a>
+
+                </td>}
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            @if (User.IsInRole("Administrativo"))
+            {
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>

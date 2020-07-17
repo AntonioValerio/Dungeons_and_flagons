@@ -19,10 +19,6 @@ namespace Dungeons_And_Flagons.Data
         /// </summary>
         public string Nome { get; set; }
 
-        /// <summary>
-        /// avatar da pessoa q se regista, e posteriormente, autentica
-        /// </summary>
-        public string Fotografia { get; set; }
 
         /// <summary>
         /// registo da hora+data da criação do registo
@@ -37,7 +33,8 @@ namespace Dungeons_And_Flagons.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<SubclassSpell>().HasKey(table1 => new { table1.SubclassID, table1.SpellID });
             modelBuilder.Entity<ClasseSpells>().HasKey(table2 => new { table2.ClasseID, table2.SpellID });
             modelBuilder.Entity<SubraceSpell>().HasKey(table3 => new { table3.SubraceID, table3.SpellID });
@@ -48,6 +45,7 @@ namespace Dungeons_And_Flagons.Data
             modelBuilder.Entity<Spells>().HasOne(s => s.Book).WithMany(s => s.Spells).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Subraces>().HasOne(s => s.Book).WithMany(s => s.Subraces).OnDelete(DeleteBehavior.Restrict);
 
+            //modelBuilder.Entity<ApplicationUser>().ToTable("Users").Property(p => p.Id).HasColumnName("ID");
 
             modelBuilder.Entity<Sources>().HasData(
                 new Sources {

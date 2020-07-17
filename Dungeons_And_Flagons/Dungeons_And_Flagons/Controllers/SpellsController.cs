@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Dungeons_And_Flagons.Data;
 using Dungeons_And_Flagons.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Dungeons_And_Flagons.Controllers
 {
+    [Authorize]
     public class SpellsController : Controller
     {
         private readonly DafDB _context;
@@ -20,6 +22,7 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Spells
+       
         public async Task<IActionResult> Index()
         {
             var dafDB = _context.Spells.Include(s => s.Book);
@@ -46,6 +49,8 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Spells/Create
+        [Authorize(Roles = "Administrativo")]
+
         public IActionResult Create()
         {
             ViewData["Source"] = new SelectList(_context.Sources, "ID", "ID");
@@ -57,6 +62,8 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Create([Bind("ID,Name,Level,CastingTime,Range,Components,Duration,School,Description,Source")] Spells spells)
         {
             if (ModelState.IsValid)
@@ -70,6 +77,8 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Spells/Edit/5
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +100,8 @@ namespace Dungeons_And_Flagons.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,CastingTime,Range,Components,Duration,School,Description,Source")] Spells spells)
         {
             if (id != spells.ID)
@@ -123,6 +134,8 @@ namespace Dungeons_And_Flagons.Controllers
         }
 
         // GET: Spells/Delete/5
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,6 +157,8 @@ namespace Dungeons_And_Flagons.Controllers
         // POST: Spells/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrativo")]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var spells = await _context.Spells.FindAsync(id);
